@@ -1,0 +1,133 @@
+/* DEFAULTS */
+:root {
+    --black: #232323;
+    --blue: #1D96CD;
+}
+
+body {
+    margin: 0;
+    font-family: Helvetica;
+    line-height: 1.4;
+}
+
+html {
+   font-size: 22px;
+   overflow-x: hidden;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    line-height: 1;
+}
+
+@media only screen and (max-width:980px) {
+    html {
+        font-size: 17px;
+    }
+}
+
+.small-container {
+    width: 90vw;
+    max-width: 21cm;
+    margin: 0 auto;
+}
+
+.big-container {
+    width: 90vw;
+    margin: 0 auto;
+}
+
+.button {
+    background-color: var(--black);
+    color: white;
+    font-weight: bold;
+    padding: 0.4em 0.9em;
+    text-decoration: none;
+    -webkit-filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+            filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+    cursor: pointer;
+    display: block;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.button.second {
+    background-color: white;
+    color: var(--blue);
+    padding: 0.4em 0.9em;
+    text-decoration: none;
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.16));
+    cursor: pointer;
+}
+
+.buttongrid {
+    display: grid;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.buttongrid.twobuttons {
+    grid-template-columns: 1fr 1fr;
+}
+
+.buttongrid .button {
+    width: auto;
+}
+
+@media only screen and (max-width: 700px) {
+    .buttongrid {
+        grid-template-columns: 1fr !important;
+    }
+}
+/* Nav */
+#navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding: 10px 0;
+}
+
+@media only screen and (max-width: 980px) {
+    #navbar {
+        position: absolute;
+    }
+}
+
+#logo {
+    height: 100px;
+    margin: auto auto auto 0;
+}
+
+@media only screen and (max-width: 980px) {
+    #logo {
+        height: 50px;
+    }
+}
+
+/*********** HOME ************/
+#hero {
+    width: 100vw;
+    min-height: 100vh;
+    min-height: calc(100 * var(--vh));
+    background: url('/media/img/herobg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+#heroinner {
+    margin: auto;
+    text-align: center;
+}
+
+@media only screen and (max-width: 980px) {
+    #heroinner {
+        margin: 50px auto 50px auto;
+    }
+}

@@ -1,0 +1,20 @@
+<?php
+session_start();
+require_once 'functions.inc.php';
+loggedIn($_COOKIE["userUid"]);
+if (!isset($_GET["usersID"])) {
+    header("location: ../users/");
+    exit();
+}
+
+
+$usersID = $_GET["usersID"];
+
+require 'config.inc.php';
+
+if (userNoexist($conn, $usersID) !== false) {
+    header("location: ../users/?error=userNoexist");
+    exit();
+}
+
+deleteUser($conn, $usersID);

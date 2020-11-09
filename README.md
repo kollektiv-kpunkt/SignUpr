@@ -32,7 +32,7 @@ The app was originally created for the Initiative "Gratis ÖV für Züri" by JUS
 
 Thank you to all the contributers!
 
-[Feedback can be sent here](mailto: hoi@kpunkt.ch)
+Feedback can be sent here: hoi@kpunkt.ch
 
 <a href="https://www.buymeacoffee.com/timothyoesch"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=❤️&slug=timothyoesch&button_colour=FF5F5F&font_colour=ffffff&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"></a>
 

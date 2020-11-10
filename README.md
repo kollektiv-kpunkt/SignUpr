@@ -21,6 +21,11 @@ The app was originally created for the Initiative "Gratis ÖV für Züri" by JUS
 
 
 
+# Installing
+This application includes a built in installer. Just upload it to the root directory of your domain, extract the files and navigate to the domain in a browser. The wizard will guide you. **IMPORTANT:** Currently, SignUpr will only work in root directories. You can obviously use Subdomains, but sobfolders won't work (will be added).
+
+
+
 # Roadmap
 
 - [x] Basic Setup

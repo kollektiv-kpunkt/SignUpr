@@ -10,7 +10,7 @@ $email = $_POST['email'];
 $pwd = $_POST['pwd'];
 $pwdrepeat = $_POST['pwdrepeat'];
 
-require_once 'config.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
 require_once 'functions.inc.php';
 
 if (emptyInput($name, $uid, $email, $pwd, $pwdrepeat) !== FALSE) {

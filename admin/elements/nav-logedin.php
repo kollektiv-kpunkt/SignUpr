@@ -1,5 +1,5 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . '/admin/includes/config.inc.php';
+require $_SERVER["DOCUMENT_ROOT"] . '/config/config.inc.php';
 ?>
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">

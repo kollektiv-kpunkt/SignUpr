@@ -12,15 +12,15 @@ $config_code .= write_variable("appName", $_POST['appName']);
 $config_code .= "$" . "conn" . " = " . "mysqli_connect($" . "dbHost, $" . "dbUser, $" . "dbPwd, $" . "dbTable); \n";
 $config_code .= "?>";
 
-$fp = fopen('../admin/includes/config.inc.php', 'w');
-if(!is_writable("../admin/includes/config.inc.php")) {
-  $error_msg="<p>Sorry, I can't write to <b>inc/db_connect.php</b>.
+$fp = fopen('../config/config.inc.php', 'w');
+if(!is_writable("../config/config.inc.php")) {
+  $error_msg="<p>Sorry, I can't write to <b>../config/config.inc.php</b>.
   You will have to edit the file yourself. Here is what you need to insert in that file:<br /><br />
   <textarea rows='5' cols='50' onclick='this.select();'>$config_code</textarea></p>";
 } else {
   fwrite($fp,$config_code);
   fclose($fp);
-  chmod('../admin/includes/config.inc.php', 0666);
+  chmod('../config/config.inc.php', 0666);
 }
 
 $dbHost = $_POST['dbHost'];

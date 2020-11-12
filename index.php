@@ -1,5 +1,5 @@
 <?php
-if (!file_exists("admin/includes/config.inc.php")) {
+if (!file_exists("config/config.inc.php")) {
     header("location: /install");
     exit();
 }

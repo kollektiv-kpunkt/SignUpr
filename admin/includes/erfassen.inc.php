@@ -11,7 +11,7 @@ $sheetNosig = $_POST['sheetNosig'];
 $sheetID = $_POST['sheetID'];
 $sheetUser = $_POST['sheetUser'];
 
-require_once 'config.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
 require_once 'functions.inc.php';
 
 

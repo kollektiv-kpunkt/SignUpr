@@ -1,9 +1,9 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
+session_start();
 getFile("header.php"); 
 getFile("nav.php");
-require "../admin/includes/config.inc.php";
-session_start();
+require $_SERVER['DOCUMENT_ROOT'] . "/config/config.inc.php";
 ?>
 <link rel="stylesheet" type="text/css" href="/style/form.css">
 <link rel="stylesheet" type="text/css" href="/style/submit.css">

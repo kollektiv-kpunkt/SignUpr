@@ -45,7 +45,7 @@ if (isset($_GET)) {
         </thead>
         <tbody>
 <?php
-    require '../includes/config.inc.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
     $sql = "SELECT * FROM users";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

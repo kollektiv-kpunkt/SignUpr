@@ -1,0 +1,28 @@
+services:
+  web:
+    build: .
+    ports:
+      - 8080:80
+    restart: always
+    volumes:
+      - config:/var/www/html/config/
+      - sheets:/var/www/html/media/pdf/
+      - ./img/:/var/www/html/media/img/
+
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=web
+      - MYSQL_USER=web
+      - MYSQL_PASSWORD=password
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    volumes:
+      - mysql_store:/var/lib/mysql
+
+volumes:
+  mysql_store:
+  config:
+  sheets:

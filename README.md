@@ -21,6 +21,12 @@ The app was originally created for the Initiative "Gratis ÖV für Züri" by JUS
 
 
 
+# Installing
+This application includes a built in installer. Just upload it to the root directory of your domain, extract the files and navigate to the domain in a browser. The wizard will guide you. **IMPORTANT:** Currently, SignUpr will only work in root directories. You can obviously use Subdomains, but sobfolders won't work (will be added).
+
+## Docker
+Change the passwords in `docker-compose.yml` and run `docker-compose up -d` to startup the database and the application. You can customize the imgs by changing them in the img folder.
+
 # Roadmap
 
 - [x] Basic Setup

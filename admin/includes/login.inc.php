@@ -8,7 +8,7 @@ $uid = $_POST['uid'];
 $pwd = $_POST['pwd'];
 $pathPrelogin = $_POST['pathPrelogin'];
 
-require_once 'config.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
 require_once 'functions.inc.php';
 
 if (emptyInputLogin($uid, $pwd) !== FALSE) {

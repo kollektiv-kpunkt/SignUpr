@@ -10,7 +10,7 @@ if (!isset($_GET["usersID"])) {
 
 $usersID = $_GET["usersID"];
 
-require 'config.inc.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config.inc.php';
 
 if (userNoexist($conn, $usersID) !== false) {
     header("location: ../users/?error=userNoexist");

@@ -20,8 +20,8 @@ if (isset($_GET["postinstaller"])) {
 session_start();
 $pagetitle = "Home";
 require_once 'includes/functions.inc.php';
-require 'elements/header-logedin.php';
 loggedIn($_COOKIE["userUid"]);
+require 'elements/header-logedin.php';
 require 'elements/nav-logedin.php';
 ?>
 

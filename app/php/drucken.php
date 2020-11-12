@@ -2,9 +2,16 @@
 $pdf2 = new FPDF('P','mm','A4');
 $pdf2->AddPage();
 $pdf2->Image($_SERVER['DOCUMENT_ROOT'] . '/media/pdf/bg_noprint.png',0,0,210);
-$address1 = $_POST["fname"] . " " . $_POST["lname"];
+
+$address1 =  $_POST["fname"] . " " . $_POST["lname"];
+$adressdecode1 = iconv('UTF-8', 'windows-1252', $address1);
+
 $address2 = $_POST["address"];
+$adressdecode2 = iconv('UTF-8', 'windows-1252', $address2);
+
 $address3 = $_POST["plz"] . " " . $_POST["ort"];
+$adressdecode3 = iconv('UTF-8', 'windows-1252', $address3);
+
 $pdf2->SetFont('Helvetica','',12);
 $pdf2->Text(125, 58.5, $address1);
 $pdf2->Text(125, 63.5, $address2);

@@ -64,6 +64,57 @@ if ($stmt->execute()){
   $_SESSION["users"] = 0;
 }
 
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `calcDONE` BEFORE UPDATE ON `bogen` FOR EACH ROW
+  IF (NEW.returned >= NEW.nosig) THEN
+    SET NEW.done = 1;
+  ELSE
+    SET NEW.done = 0;
+  END IF;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_calcDONE"] = 1;
+}else{ 
+  $_SESSION["trigger_calcDONE"] = 0;
+}
+
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `calcINSERT` BEFORE INSERT ON `bogen` FOR EACH ROW SET NEW.notreturned=NEW.nosig-NEW.returned;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_calcINSERT"] = 1;
+}else{ 
+  $_SESSION["trigger_calcINSERT"] = 0;
+}
+
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `calcUPDATE` BEFORE UPDATE ON `bogen` FOR EACH ROW IF (NEW.nosig-NEW.returned>=0) THEN
+	SET NEW.notreturned=NEW.nosig-NEW.returned;
+ELSE
+	SET NEW.notreturned=0;
+END IF;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_calcUPDATE"] = 1;
+}else{ 
+  $_SESSION["trigger_calcUPDATE"] = 0;
+}
+
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `deleteNosig` AFTER DELETE ON `sheet` FOR EACH ROW IF (OLD.sheetBogenID IS NOT NULL AND OLD.sheetBogenID != '') THEN
+	UPDATE bogen SET returned = (bogen.returned - OLD.sheetNosig) WHERE bogen.bogenID = OLD.sheetBogenID;
+END IF;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_deleteNosig"] = 1;
+}else{ 
+  $_SESSION["trigger_deleteNosig"] = 0;
+}
+
 $conn = mysqli_connect($dbHost, $dbUser, $dbPwd, $dbTable);
 $sql = "INSERT INTO users (usersName, usersEmail, usersUid, usersPwd, usersFree) VALUES (?, ?, ?, ?, ?);";
 $stmt = mysqli_stmt_init($conn);

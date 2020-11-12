@@ -44,7 +44,7 @@ Change the passwords in `docker-compose.yml` and run `docker-compose up -d` to s
 Thank you to all the contributers!
 
 - [Timothy Oesch](https://github.com/timothyoesch) ([Kreativ Kollektiv K.](https://github.com/kollektiv-kpunkt) | [Homepage](http://kpunkt.ch/))
-- [Sandro Covo](https://github.com/sacovo) [digital/organizing](https://digitalorganizing.ch/)
+- [Sandro Covo](https://github.com/sacovo) ([digital/organizing](https://digitalorganizing.ch/))
 
 
 

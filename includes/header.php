@@ -1,5 +1,5 @@
 <?php
-require $_SERVER["DOCUMENT_ROOT"] . '/admin/includes/config.inc.php';
+require $_SERVER["DOCUMENT_ROOT"] . '/config/config.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="de" xml:lang="de" xmlns="http://www.w3.org/1999/xhtml">

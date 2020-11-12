@@ -25,10 +25,10 @@ use PHPMailer\PHPMailer\Exception;
 // Load Composer's autoloader
 require($_SERVER['DOCUMENT_ROOT'] . '/vendor/mailer/vendor/autoload.php');
 
-require_once "../admin/includes/config.inc.php";
-require '../admin/includes/emailconfig.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/config/config.inc.php";
+require $_SERVER['DOCUMENT_ROOT'] . '/config/emailconfig.inc.php';
 
-$messagesjson = file_get_contents('../admin/includes/emailmessages.inc.json');
+$messagesjson = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/config/emailmessages.inc.json');
 $messages = json_decode($messagesjson);
 $message = $messages->drucken;
 $msgsubject = $message->subject;

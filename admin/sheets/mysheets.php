@@ -41,7 +41,7 @@ if (isset($_GET['sheetupdated'])) {
         </thead>
         <tbody>
 <?php
-    require '../includes/config.inc.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
     $mysheetsUid = $_COOKIE["userUid"];
     $sql = "SELECT * FROM sheet WHERE sheetUser = ? ORDER BY sheetTimestamp DESC;";
     $stmt = mysqli_stmt_init($conn);

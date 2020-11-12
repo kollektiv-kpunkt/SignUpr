@@ -1,5 +1,5 @@
 <?php
-require "../admin/includes/config.inc.php";
+require $_SERVER['DOCUMENT_ROOT'] . "/config/config.inc.php";
 
 if (!isset($_POST['fname'])) {
     header("location: ../../");

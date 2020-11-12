@@ -1,8 +1,9 @@
 <?php
+session_start();
 include($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
+session_start();
 getFile("header.php"); 
 getFile("nav.php");
-session_start();
 ?>
 <link rel="stylesheet" type="text/css" href="/style/form.css">
 

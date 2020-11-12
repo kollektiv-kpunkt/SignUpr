@@ -8,8 +8,8 @@ $nachrichten = array('thx' => $emailthx, 'drucken' => $emaildrucken);
 
 $nachrichtenjson = json_encode($nachrichten);
 
-$fp = fopen('../admin/includes/emailmessages.inc.json', 'w');
-if(!is_writable("../admin/includes/emailmessages.inc.json")) {
+$fp = fopen('../config/emailmessages.inc.json', 'w');
+if(!is_writable("../config/emailmessages.inc.json")) {
   $error_msg="<p>Sorry, I can't write to <b>/admin/includes/emailmessages.inc.json</b>.
   You will have to edit the file yourself. Here is what you need to insert in that file:<br /><br />
   <textarea rows='5' cols='50' onclick='this.select();'>$nachrichtenjson</textarea></p>";
@@ -17,7 +17,7 @@ if(!is_writable("../admin/includes/emailmessages.inc.json")) {
 } else {
   fwrite($fp,$nachrichtenjson);
   fclose($fp);
-  chmod('../admin/includes/emailmessages.inc.json', 0666);
+  chmod('../config/emailmessages.inc.json', 0666);
 }
 
 header("location: done.php");

@@ -40,6 +40,16 @@ if ($_SESSION["users"] == 1) {
     $users_message = 'There was a problem creating the Table "users". Please check your database setup and then restart the installer.';
 }
 
+if ($_SESSION["trigger_calcDONE"] == 1 && $_SESSION["trigger_calcINSERT"] == 1 && $_SESSION["trigger_calcUPDATE"] == 1 && $_SESSION["trigger_deleteNosig"] == 1) {
+    $trigger_status = "success";
+    $trigger_icon = "check";
+    $trigger_message = "Successfully created!";
+} else {
+    $trigger_status = "danger";
+    $trigger_icon = "x";
+    $trigger_message = 'There was a problem creating the triggers for your SQL DB. Please check your database setup and then restart the installer.';
+}
+
 
 ?>
 
@@ -97,6 +107,10 @@ if ($_SESSION["users"] == 1) {
             <td class="text-<?= $users_status ?>"><span data-feather="<?= $users_icon ?>"></span>  <?= $users_message ?></td>
         </tr>
         <tr>
+            <td>Database triggers</td>
+            <td class="text-<?= $trigger_status ?>"><span data-feather="<?= $trigger_icon ?>"></span>  <?= $trigger_message ?></td>
+        </tr>
+        <tr>
             <td>Bogen File</td>
             <td class="text-success"><span data-feather="check"></span>Successfully uploaded!</td>
         </tr>
@@ -114,7 +128,7 @@ if ($_SESSION["users"] == 1) {
         </tr>
     </tbody>
 </table>
-<p>If all the processes have been setup succesfully, you can now login to your instances of SignUpr with the credentials <b>admin</b> (Username) and <b>12345</b>. <b class="text-danger">DO NOT FORGET TO CHANGE THAT PASSWORD IMMEDIATELY!</b>
+<p>If all the processes have been setup succesfully, you can now login to your instances of SignUpr with the credentials <b>admin</b> (Username) and <b>12345</b>. <b class="text-danger"><br>DO NOT FORGET TO CHANGE THAT PASSWORD IMMEDIATELY!</b></p>
 <button type="button" onclick="window.location.href='/admin?postinstaller=1'" class="btn btn-lg btn-primary mt-4">Log in</button>
 
 

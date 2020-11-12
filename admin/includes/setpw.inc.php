@@ -21,7 +21,7 @@ if (noMatch($newPW, $newPWre) !== false) {
     exit();
 }
 
-require 'config.inc.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
 
 if (pwWrong($conn, $currPW, $userUid) !== false) {
     header("location: ../users/setpw.php?error=pwWrong");

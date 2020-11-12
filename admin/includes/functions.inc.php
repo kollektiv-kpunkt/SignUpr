@@ -150,7 +150,7 @@ function loginUser($conn, $uid, $pwd, $stay, $pathPrelogin) {
 }
 
 function loggedIn($uid) {
-    require_once 'config.inc.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
     if (!isset($_COOKIE["userUid"])) {
         header("location: /admin/login.php?pathPrelogin=" . $_SERVER["REQUEST_URI"]);
         exit();

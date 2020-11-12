@@ -8,7 +8,7 @@ require '../elements/nav-logedin.php';
 
 <div id="load">
   <?php
-  require '../includes/config.inc.php';
+  require $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
   //Benötigte Unterschriften
   $benot = 3000;
 

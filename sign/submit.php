@@ -1,10 +1,13 @@
 <?php
+session_start();
 include($_SERVER['DOCUMENT_ROOT'] . "/functions.php");
+session_start();
 getFile("header.php"); 
 getFile("nav.php");
-require "../admin/includes/config.inc.php";
-session_start();
+
+require $_SERVER['DOCUMENT_ROOT'] . "/config/config.inc.php";
 ?>
+
 <link rel="stylesheet" type="text/css" href="/style/form.css">
 <link rel="stylesheet" type="text/css" href="/style/submit.css">
 
@@ -26,6 +29,12 @@ session_start();
 </div>
 
 <?php
+
+$_POST["fname"] = ucwords(strtolower($_POST["fname"]));
+$_POST["lname"] = ucwords(strtolower($_POST["lname"]));
+$_POST["address"] = ucwords(strtolower($_POST["address"]));
+$_POST["ort"] = ucwords(strtolower($_POST["ort"]));
+
 appFile("bogen.php");
 if (isset($_POST['drucken'])) {
     appFile("drucken.php");

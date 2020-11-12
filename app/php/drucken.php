@@ -2,9 +2,16 @@
 $pdf2 = new FPDF('P','mm','A4');
 $pdf2->AddPage();
 $pdf2->Image($_SERVER['DOCUMENT_ROOT'] . '/media/pdf/bg_noprint.png',0,0,210);
-$address1 = $_POST["fname"] . " " . $_POST["lname"];
+
+$address1 =  $_POST["fname"] . " " . $_POST["lname"];
+$adressdecode1 = iconv('UTF-8', 'windows-1252', $address1);
+
 $address2 = $_POST["address"];
+$adressdecode2 = iconv('UTF-8', 'windows-1252', $address2);
+
 $address3 = $_POST["plz"] . " " . $_POST["ort"];
+$adressdecode3 = iconv('UTF-8', 'windows-1252', $address3);
+
 $pdf2->SetFont('Helvetica','',12);
 $pdf2->Text(125, 58.5, $address1);
 $pdf2->Text(125, 63.5, $address2);
@@ -25,10 +32,10 @@ use PHPMailer\PHPMailer\Exception;
 // Load Composer's autoloader
 require($_SERVER['DOCUMENT_ROOT'] . '/vendor/mailer/vendor/autoload.php');
 
-require_once "../admin/includes/config.inc.php";
-require '../admin/includes/emailconfig.inc.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . "/config/config.inc.php";
+require $_SERVER['DOCUMENT_ROOT'] . '/config/emailconfig.inc.php';
 
-$messagesjson = file_get_contents('../admin/includes/emailmessages.inc.json');
+$messagesjson = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/config/emailmessages.inc.json');
 $messages = json_decode($messagesjson);
 $message = $messages->drucken;
 $msgsubject = $message->subject;

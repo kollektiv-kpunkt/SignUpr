@@ -12,15 +12,15 @@ $config_code .= write_variable("appName", $_POST['appName']);
 $config_code .= "$" . "conn" . " = " . "mysqli_connect($" . "dbHost, $" . "dbUser, $" . "dbPwd, $" . "dbTable); \n";
 $config_code .= "?>";
 
-$fp = fopen('../admin/includes/config.inc.php', 'w');
-if(!is_writable("../admin/includes/config.inc.php")) {
-  $error_msg="<p>Sorry, I can't write to <b>inc/db_connect.php</b>.
+$fp = fopen('../config/config.inc.php', 'w');
+if(!is_writable("../config/config.inc.php")) {
+  $error_msg="<p>Sorry, I can't write to <b>../config/config.inc.php</b>.
   You will have to edit the file yourself. Here is what you need to insert in that file:<br /><br />
   <textarea rows='5' cols='50' onclick='this.select();'>$config_code</textarea></p>";
 } else {
   fwrite($fp,$config_code);
   fclose($fp);
-  chmod('../admin/includes/config.inc.php', 0666);
+  chmod('../config/config.inc.php', 0666);
 }
 
 $dbHost = $_POST['dbHost'];
@@ -62,6 +62,57 @@ if ($stmt->execute()){
   $_SESSION["users"] = 1;
 }else{ 
   $_SESSION["users"] = 0;
+}
+
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `calcDONE` BEFORE UPDATE ON `bogen` FOR EACH ROW
+  IF (NEW.returned >= NEW.nosig) THEN
+    SET NEW.done = 1;
+  ELSE
+    SET NEW.done = 0;
+  END IF;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_calcDONE"] = 1;
+}else{ 
+  $_SESSION["trigger_calcDONE"] = 0;
+}
+
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `calcINSERT` BEFORE INSERT ON `bogen` FOR EACH ROW SET NEW.notreturned=NEW.nosig-NEW.returned;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_calcINSERT"] = 1;
+}else{ 
+  $_SESSION["trigger_calcINSERT"] = 0;
+}
+
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `calcUPDATE` BEFORE UPDATE ON `bogen` FOR EACH ROW IF (NEW.nosig-NEW.returned>=0) THEN
+	SET NEW.notreturned=NEW.nosig-NEW.returned;
+ELSE
+	SET NEW.notreturned=0;
+END IF;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_calcUPDATE"] = 1;
+}else{ 
+  $_SESSION["trigger_calcUPDATE"] = 0;
+}
+
+$db = new PDO("mysql:host=$dbHost;dbname=$dbTable", $dbUser, $dbPwd);
+$query = "
+CREATE TRIGGER `deleteNosig` AFTER DELETE ON `sheet` FOR EACH ROW IF (OLD.sheetBogenID IS NOT NULL AND OLD.sheetBogenID != '') THEN
+	UPDATE bogen SET returned = (bogen.returned - OLD.sheetNosig) WHERE bogen.bogenID = OLD.sheetBogenID;
+END IF;";
+$stmt = $db->prepare($query);
+if ($stmt->execute()){
+  $_SESSION["trigger_deleteNosig"] = 1;
+}else{ 
+  $_SESSION["trigger_deleteNosig"] = 0;
 }
 
 $conn = mysqli_connect($dbHost, $dbUser, $dbPwd, $dbTable);

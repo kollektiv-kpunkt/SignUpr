@@ -36,7 +36,7 @@ require '../elements/nav-logedin.php';
         </thead>
         <tbody>
 <?php
-    require '../includes/config.inc.php';
+    require $_SERVER['DOCUMENT_ROOT'] . '/config/config.inc.php';
     $sql = "SELECT * FROM bogen";
     $stmt = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt, $sql)) {

@@ -21,7 +21,7 @@ $id = uniqid() . "-" . rand(1000,9999) . "-" . rand(1000,9999) . "-" . rand(1000
 $_SESSION['id'] = $id;
 $filename = "bogen-" . $id . ".pdf";
 $_SESSION['filename'] = $filename;
-$bogenQR = $appURL . "admin/erfassen/?sheetBogenID=" . $id;
+$bogenQR = $appURL . "admin/sheets/?sheetBogenID=" . $id;
 $_SESSION['bogenQR'] = $bogenQR;
 $qrcode = new QRcode($bogenQR, 'H'); // error level : L, M, Q, H
 $qrcode->displayFPDF($pdf, 10, 118, 20);

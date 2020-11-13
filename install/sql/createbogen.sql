@@ -4,6 +4,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `bogen` (
   `ID` int(11) NOT NULL,
+  `bogenTimestamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `bogenID` varchar(255) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `lname` varchar(255) NOT NULL,

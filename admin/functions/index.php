@@ -48,21 +48,26 @@ require '../elements/nav-logedin.php';
     foreach ($resultData as $result) { 
 ?>
             <tr>
-              <th scope="row"><?= $result["ID"] ?></th>
-              <td><a href="/media/pdf/bogen-<?= $result["bogenID"] ?>.pdf" target="_blank"><?= $result["bogenID"] ?></td>
-              <td><?= date('d.m.Y G:i', strtotime($result["bogenTimestamp"])) ?></td>
-              <td><?= $result["fname"] ?></td>
-              <td><?= $result["lname"] ?></td>
-              <td><?= $result["email"] ?></td>
-              <td><?= $result["phone"] ?></td>
-              <td><?= $result["address"] ?></td>
-              <td><?= $result["plz"] ?></td>
-              <td><?= $result["ort"] ?></td>
-              <td><?php if ($result["optin"] == 1) {echo("<span class='text-success'>Ja</span>"); } else {echo("<span class='text-danger'>Nein</span>"); } ?></td>
-              <td><?= $result["nosig"] ?></td>
-              <td><?= $result["returned"] ?></td>
-              <td><?= $result["notreturned"] ?></td>
-              <td><?php if ($result["done"] == 1) {echo("<span class='text-success'>Ja</span>"); } else {echo("<span class='text-danger'>Nein</span>"); } ?></td>
+                <th scope="row"><?= $result["ID"] ?></th>
+                <td><a href="/media/pdf/bogen-<?= $result["bogenID"] ?>.pdf" target="_blank"><?= $result["bogenID"] ?></td>
+                <td><?= date('d.m.Y G:i', strtotime($result["bogenTimestamp"])) ?></td>
+                <td><?= $result["fname"] ?></td>
+                <td><?= $result["lname"] ?></td>
+                <td><?= $result["email"] ?></td>
+                <td><?= $result["phone"] ?></td>
+                <td><?= $result["address"] ?></td>
+                <td><?= $result["plz"] ?></td>
+                <td><?= $result["ort"] ?></td>
+                <td><?php if ($result["optin"] == 1) {echo("<span class='text-success'>Ja</span>"); } else {echo("<span class='text-danger'>Nein</span>"); } ?></td>
+                <td><?= $result["nosig"] ?></td>
+                <td><?= $result["returned"] ?></td>
+                <td><?= $result["notreturned"] ?></td>
+                <td><?php if ($result["done"] == 1) {echo("<span class='text-success'>Ja</span>"); } else {echo("<span class='text-danger'>Nein</span>"); } ?></td>
+                <select class="form-control form-control-sm actionselect" id="actionselect">
+                    <option><em>Option Wählen...</em></option>
+                    <option value="/admin/includes/generateletter.inc.php?usersID=<?= $result["bogenID"] ?>">Brief generieren</option>
+                    <option value="/admin/includes/deletebogen.inc.php?usersID=<?= $result["bogenID"] ?>">Löschen</option>
+                </select>
             </tr>
 <?php } ?>
         </tbody>

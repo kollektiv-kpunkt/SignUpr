@@ -32,6 +32,7 @@ require '../elements/nav-logedin.php';
               <th scope="col">#Retour</th>
               <th scope="col">#Fehlend</th>
               <th scope="col">Fertig?</th>
+              <th scope="col">Bearbeiten</th>
             </tr>
         </thead>
         <tbody>
@@ -63,11 +64,13 @@ require '../elements/nav-logedin.php';
                 <td><?= $result["returned"] ?></td>
                 <td><?= $result["notreturned"] ?></td>
                 <td><?php if ($result["done"] == 1) {echo("<span class='text-success'>Ja</span>"); } else {echo("<span class='text-danger'>Nein</span>"); } ?></td>
+                <td>
                 <select class="form-control form-control-sm actionselect" id="actionselect">
                     <option><em>Option Wählen...</em></option>
                     <option value="/admin/includes/generateletter.inc.php?usersID=<?= $result["bogenID"] ?>">Brief generieren</option>
                     <option value="/admin/includes/deletebogen.inc.php?usersID=<?= $result["bogenID"] ?>">Löschen</option>
                 </select>
+                </td>
             </tr>
 <?php } ?>
         </tbody>
@@ -84,7 +87,7 @@ $(document).ready( function () {
             viewTotal: true,
         },
         "columnDefs": [
-            { "visible": false, "targets": [2, 5, 6, 7, 8, 12]}
+            { "visible": false, "targets": [2, 5, 6, 7, 8, 10, 12]}
         ],
         buttons: [
             'colvis',

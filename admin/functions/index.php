@@ -87,7 +87,7 @@ $(document).ready( function () {
             viewTotal: true,
         },
         "columnDefs": [
-            { "visible": false, "targets": [2, 5, 6, 7, 8, 10, 12]}
+            { "visible": false, "targets": [1, 2, 5, 6, 7, 8, 10, 12]}
         ],
         buttons: [
             'colvis',
